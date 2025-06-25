@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-import
+import pandas as pd
+
 edge_options = webdriver.EdgeOptions()
 edge_options.add_experimental_option("detach", True)
 
@@ -18,7 +19,7 @@ events = [item.text for item in upcoming_event]
 for num in range(0, len(dates)-1):
     table["2025-"+dates[num]]= events[num]
 
-print(table)
-
+df = pd.DataFrame(list(table.items()), columns=["time", "name"])
+print(df)
 
 driver.quit()
